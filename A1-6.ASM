@@ -10,11 +10,14 @@ START:
   MOV [04], BL
 
 DO:	
-  CALL 30
   PUSH AL
   PUSH BL
+
+  CALL 30
+
   POP AL
   POP BL
+
   JMP IF
 
 IF:
@@ -24,7 +27,14 @@ IF:
 
 PROC:
   ORG	30	; Code starts at address [30]
+  POP DL
+  POP BL
+  POP AL
   MOD	AL,BL	
+  PUSH AL
+  PUSH BL
+  PUSH DL
+
   RET		
 
 
