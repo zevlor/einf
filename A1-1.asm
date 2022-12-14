@@ -1,22 +1,21 @@
+  CLO 			
+  JMP START		
+  DB 0			
+
 START:
-  CLO				                  ;close everything
-  MOV BL,C0			              ;Make BL point to video RAM
-  MOV AL, 3  			            ;initializing the regester AL with the value hex. 3
+  MOV AL,5		
+  MOV [03], AL  	
   	
-COMPARE:
-  CMP AL, 5			              ;compare the two values
-  JS PRINT_AND_INCREMENT	    ; 
-  JMP END			                ;
+  CMP AL, 5			   
+  JS INCREMENT	    
+  JMP END			 
 
-PRINT_AND_INCREMENT:
-  MOV CL, 30			            ;
-  ADD CL, AL			            ; 
-  MOV [BL], CL			          ;
+INCREMENT:
+  INC AL		             			         
+  MOV [03], AL
+  JMP END
 
-  INC BL  			              ;
-  INC AL			                ;
-
-  JMP COMPARE			            ;
-
-END: 
-  END				                  ;
+END:
+  ADD AL, 30
+  MOV [C0], AL  
+  END
