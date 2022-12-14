@@ -13,8 +13,8 @@ START:
 
 PROC:
   ORG	30	; Code starts at address [30]
-  MOD	AL,BL	; Do the addition.  Result goes into AL
-  RET		; Return from the procedure
+  MOD	AL,BL	
+  RET		
 
 
 
