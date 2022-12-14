@@ -1,31 +1,23 @@
+CLO 			
+  JMP START		
+  DB 0			
+
 START:
-  CLO				              ;close everything
-  MOV BL,C0			              ;Make BL point to video RAM
-  MOV AL, 5  			            
+  MOV AL,5		
+  MOV [03], AL  	
   	
-IF:
-  CMP AL, 3			              
-  JZ DO
-  JMP DO_ELSE	     
-
-			                
-DO:
-  INC AL
-  JMP PRINT
-
-
-DO_ELSE:
+  CMP AL, 3			   
+  JZ INCREMENT
   ADD AL, 2
-  JMP PRINT
+  MOV [03], AL	    
+  JMP END			 
 
+INCREMENT:
+  INC AL		             			         
+  MOV [03], AL
+  JMP END
 
-PRINT:
-  MOV CL, 30
-  ADD CL, AL
-  MOV [BL], CL
-  INC BL
-  JMP IF
-
-
-END: 
-  END	
+END:
+  ADD AL, 30
+  MOV [C0], AL  
+  END
